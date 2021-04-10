@@ -5,9 +5,11 @@
 
     <StackLayout Margin="15"
                  VerticalOptions="Center">
-        <Entry Placeholder="Email"
+        <Entry x:Name="emailEntry"
+               Placeholder="Email"
                Keyboard="Email"/>
-        <Entry Placeholder="Password"
+        <Entry x:Name="passwordEntry"
+               Placeholder="Password"
                IsPassword="True"/>
         <Button x:Name="loginButton"
                 Text="Login"
