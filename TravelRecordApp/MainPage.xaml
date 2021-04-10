@@ -5,8 +5,10 @@
 
     <StackLayout Margin="15"
                  VerticalOptions="Center">
-        <Entry Placeholder="Email"/>
-        <Entry Placeholder="Password"/>
+        <Entry Placeholder="Email"
+               Keyboard="Email"/>
+        <Entry Placeholder="Password"
+               IsPassword="True"/>
         <Button x:Name="loginButton"
                 Text="Login"
                 BackgroundColor="#3F84E5"
