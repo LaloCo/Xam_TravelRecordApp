@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace TravelRecordApp
 {
-    public partial class HomePage : TabbedPage
+    public partial class HistoryPage : ContentPage
     {
-        public HomePage()
+        public HistoryPage()
         {
             InitializeComponent();
         }
