@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using SQLite;
+using TravelRecordApp.Model;
 using Xamarin.Forms;
 
 namespace TravelRecordApp
@@ -10,6 +11,24 @@ namespace TravelRecordApp
         public NewTravelPage()
         {
             InitializeComponent();
+        }
+
+        private void Save_Clicked(object sender, EventArgs e)
+        {
+            Post newPost = new Post()
+            {
+                Experience = experienceEntry.Text
+            };
+
+            SQLiteConnection conn = new SQLiteConnection(App.databaseLocation);
+            conn.CreateTable<Post>();
+            int rowsAffected = conn.Insert(newPost);
+            conn.Close();
+
+            if (rowsAffected > 0)
+                DisplayAlert("Success", "Post saved", "Ok");
+            else
+                DisplayAlert("Failure", "Post was not saved, please try again", "Ok");
         }
     }
 }
