@@ -7,7 +7,7 @@
             <Color x:Key="blueColor">#FF5A60</Color>
             <Color x:Key="lightColor">#FFFFFF</Color>
 
-            <Style TargetType="Button">
+            <Style x:Key="normalButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource blueColor}"/>
                 <Setter Property="TextColor" Value="{StaticResource lightColor}"/>
             </Style>

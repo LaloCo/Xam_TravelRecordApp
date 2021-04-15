@@ -15,7 +15,8 @@
                TextColor="{StaticResource blueColor}"/>
         <Button x:Name="loginButton"
                 Text="Login"
-                Clicked="loginButton_Clicked"/>
+                Clicked="loginButton_Clicked"
+                Style="{StaticResource normalButton}"/>
     </StackLayout>
 
 </ContentPage>
