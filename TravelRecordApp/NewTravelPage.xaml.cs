@@ -20,15 +20,16 @@ namespace TravelRecordApp
                 Experience = experienceEntry.Text
             };
 
-            SQLiteConnection conn = new SQLiteConnection(App.databaseLocation);
-            conn.CreateTable<Post>();
-            int rowsAffected = conn.Insert(newPost);
-            conn.Close();
+            using (SQLiteConnection conn = new SQLiteConnection(App.databaseLocation))
+            {
+                conn.CreateTable<Post>();
+                int rowsAffected = conn.Insert(newPost);
 
-            if (rowsAffected > 0)
-                DisplayAlert("Success", "Post saved", "Ok");
-            else
-                DisplayAlert("Failure", "Post was not saved, please try again", "Ok");
+                if (rowsAffected > 0)
+                    DisplayAlert("Success", "Post saved", "Ok");
+                else
+                    DisplayAlert("Failure", "Post was not saved, please try again", "Ok");
+            }
         }
     }
 }
