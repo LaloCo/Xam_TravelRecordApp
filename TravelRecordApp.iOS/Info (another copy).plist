@@ -37,6 +37,6 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need access to the location so that we can display nearby venues.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We need access to the location so that we can display nearby venues.</string>
+	<string>New Entry</string>
 </dict>
 </plist>
