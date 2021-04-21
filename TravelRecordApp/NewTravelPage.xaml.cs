@@ -26,7 +26,10 @@ namespace TravelRecordApp
                 int rowsAffected = conn.Insert(newPost);
 
                 if (rowsAffected > 0)
+                {
+                    experienceEntry.Text = string.Empty;
                     DisplayAlert("Success", "Post saved", "Ok");
+                }
                 else
                     DisplayAlert("Failure", "Post was not saved, please try again", "Ok");  
             }

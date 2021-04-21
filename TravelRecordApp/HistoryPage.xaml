@@ -3,7 +3,8 @@
             xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="TravelRecordApp.HistoryPage">
-    <ListView x:Name="postListView">
+    <ListView x:Name="postListView"
+              ItemSelected="postListView_ItemSelected">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextCell Text="{Binding Experience}"/>
