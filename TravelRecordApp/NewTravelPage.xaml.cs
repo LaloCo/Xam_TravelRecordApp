@@ -28,7 +28,7 @@ namespace TravelRecordApp
                 if (rowsAffected > 0)
                     DisplayAlert("Success", "Post saved", "Ok");
                 else
-                    DisplayAlert("Failure", "Post was not saved, please try again", "Ok");
+                    DisplayAlert("Failure", "Post was not saved, please try again", "Ok");  
             }
         }
     }
