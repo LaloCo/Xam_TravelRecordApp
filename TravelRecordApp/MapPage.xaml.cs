@@ -27,6 +27,8 @@ namespace TravelRecordApp
             if(status == PermissionStatus.Granted)
             {
                 var location = await Geolocation.GetLocationAsync();
+
+                locationsMap.IsShowingUser = true;
             }
         }
 
