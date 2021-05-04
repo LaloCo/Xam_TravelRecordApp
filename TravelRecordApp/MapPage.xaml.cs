@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -10,6 +11,7 @@ namespace TravelRecordApp
 {
     public partial class MapPage : ContentPage
     {
+        IGeolocator locator = CrossGeolocator.Current;
         public MapPage()
         {
             InitializeComponent();
@@ -22,6 +24,13 @@ namespace TravelRecordApp
             GetLocation();
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            locator.StopListeningAsync();
+        }
+
         private async void GetLocation()
         {
             var status = await CheckAndRequestLocationPermission();
@@ -30,7 +39,6 @@ namespace TravelRecordApp
             {
                 var location = await Geolocation.GetLocationAsync();
 
-                var locator = CrossGeolocator.Current;
                 locator.PositionChanged += Locator_PositionChanged;
                 await locator.StartListeningAsync(new TimeSpan(0,1,0),100);
 
