@@ -55,7 +55,7 @@ namespace TravelRecordApp
 
         private void CenterMap(double latitude, double longitude)
         {
-            Position center = new Position(latitude, longitude);
+            var center = new Xamarin.Forms.Maps.Position(latitude, longitude);
             MapSpan span = new MapSpan(center, 1, 1);
 
             locationsMap.MoveToRegion(span);

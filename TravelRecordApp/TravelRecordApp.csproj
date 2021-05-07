@@ -21,5 +21,6 @@
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Logic\" />
   </ItemGroup>
 </Project>
