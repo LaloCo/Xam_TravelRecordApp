@@ -22,5 +22,13 @@
     <Folder Include="Model\" />
     <Folder Include="Helpers\" />
     <Folder Include="Logic\" />
+    <Folder Include="Assets\" />
+    <Folder Include="Assets\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Images\travel-bag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Images\travel-bag.png" />
   </ItemGroup>
 </Project>

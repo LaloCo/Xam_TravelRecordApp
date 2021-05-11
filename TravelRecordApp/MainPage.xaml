@@ -5,6 +5,11 @@
 
     <StackLayout Margin="15"
                  VerticalOptions="Center">
+        <Image x:Name="iconImage"
+               Aspect="AspectFit"
+               HorizontalOptions="FillAndExpand"
+               HeightRequest="150"
+               Margin="0,0,0,30"/>
         <Entry x:Name="emailEntry"
                Placeholder="Email"
                Keyboard="Email"
