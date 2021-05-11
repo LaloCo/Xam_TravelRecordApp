@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Plugin.Geolocator;
 using SQLite;
+using System.Linq;
 using TravelRecordApp.Logic;
 using TravelRecordApp.Model;
 using Xamarin.Forms;
@@ -28,23 +29,44 @@ namespace TravelRecordApp
 
         private void Save_Clicked(object sender, EventArgs e)
         {
-            Post newPost = new Post()
+            try
             {
-                Experience = experienceEntry.Text
-            };
+                var selectedVenue = venueListView.SelectedItem as Venue;
+                var firstCategory = selectedVenue.categories.FirstOrDefault();
 
-            using (SQLiteConnection conn = new SQLiteConnection(App.databaseLocation))
-            {
-                conn.CreateTable<Post>();
-                int rowsAffected = conn.Insert(newPost);
-
-                if (rowsAffected > 0)
+                Post newPost = new Post()
                 {
-                    experienceEntry.Text = string.Empty;
-                    DisplayAlert("Success", "Post saved", "Ok");
+                    Experience = experienceEntry.Text,
+                    Address = selectedVenue.location.address,
+                    Distance = selectedVenue.location.distance,
+                    Latitude = selectedVenue.location.lat,
+                    Longitude = selectedVenue.location.lng,
+                    VenueName = selectedVenue.name,
+                    CategoryId = firstCategory.id,
+                    CategoryName = firstCategory.name
+                };
+
+                using (SQLiteConnection conn = new SQLiteConnection(App.databaseLocation))
+                {
+                    conn.CreateTable<Post>();
+                    int rowsAffected = conn.Insert(newPost);
+
+                    if (rowsAffected > 0)
+                    {
+                        experienceEntry.Text = string.Empty;
+                        DisplayAlert("Success", "Post saved", "Ok");
+                    }
+                    else
+                        DisplayAlert("Failure", "Post was not saved, please try again", "Ok");
                 }
-                else
-                    DisplayAlert("Failure", "Post was not saved, please try again", "Ok");  
+            }
+            catch(NullReferenceException nrex)
+            {
+
+            }
+            catch(Exception ex)
+            {
+
             }
         }
     }
