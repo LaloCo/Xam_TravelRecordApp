@@ -30,7 +30,7 @@ namespace TravelRecordApp
                 foreach (var category in categories)
                 {
                     var count = (from p in postTable
-                                 where p.CategoryId == category
+                                 where p.CategoryName == category
                                  select p).ToList().Count;
 
                     categoriesCount.Add(category, count);
