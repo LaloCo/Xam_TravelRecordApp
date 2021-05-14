@@ -16,7 +16,8 @@
             <ListView Margin="-15,0" x:Name="categoriesListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell/>
+                        <TextCell Text="{Binding Path=Key}"
+                                  Detail="{Binding Path=Value}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
