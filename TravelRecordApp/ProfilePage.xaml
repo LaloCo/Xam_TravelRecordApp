@@ -4,8 +4,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="TravelRecordApp.ProfilePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="This is the History Page"/>
+        <StackLayout Margin="15,40,15,0">
+            <Label x:Name="postsCountLabel"
+                   Text="--"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{StaticResource blueColor}"
+                   FontAttributes="Bold"/>
+            <Label Text="posts"
+                   HorizontalOptions="Center"
+                   TextColor="LightGray"/>
+            <ListView Margin="-15,0" x:Name="categoriesListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
