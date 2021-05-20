@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "893118108339",
+    "project_id": "travelrecordapp-44f9c",
+    "storage_bucket": "travelrecordapp-44f9c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893118108339:android:5f2906700ec277229456c6",
+        "android_client_info": {
+          "package_name": "com.lalorosas.travelrecordapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893118108339-9af0q1odo78h42qmv5msfgbnvier2qsj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD79ADHosfruDZoJuFeptKtQoRhA9NpKkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893118108339-9af0q1odo78h42qmv5msfgbnvier2qsj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "893118108339-hcc3prt16onkk210u54bnve1pjcib3un.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lalorosas.TravelRecordApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
