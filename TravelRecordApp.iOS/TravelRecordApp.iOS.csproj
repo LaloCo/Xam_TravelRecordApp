@@ -68,6 +68,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Dependencies\Auth.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -157,5 +158,8 @@
     <BundleResource Include="Resources\add%403x.png" />
     <BundleResource Include="Resources\save%403x.png" />
     <BundleResource Include="GoogleService-Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dependencies\" />
   </ItemGroup>
 </Project>
