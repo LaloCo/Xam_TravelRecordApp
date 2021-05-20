@@ -134,6 +134,9 @@
     <PackageReference Include="Xam.Plugin.Geolocator">
       <Version>4.5.0.6</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.iOS.Auth">
+      <Version>6.9.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -153,5 +156,6 @@
     <BundleResource Include="Resources\map%403x.png" />
     <BundleResource Include="Resources\add%403x.png" />
     <BundleResource Include="Resources\save%403x.png" />
+    <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
 </Project>
