@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace TravelRecordApp.Helpers
 {
     public interface IAuth
     {
-        bool RegisterUser(string email, string password);
-        bool LoginUser(string email, string password);
+        Task<bool> RegisterUser(string email, string password);
+        Task<bool> LoginUser(string email, string password);
         bool IsAuthenticated();
         string GetCurrentUserId();
     }
@@ -15,26 +16,44 @@ namespace TravelRecordApp.Helpers
     {
         private static IAuth auth = DependencyService.Get<IAuth>();
 
-        public static bool RegisterUser(string email, string password)
+        public static async Task<bool> RegisterUser(string email, string password)
         {
-            return true;
+            try
+            {
+                return await auth.RegisterUser(email, password);
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                return false;
+            }
         }
 
-        public static bool LoginUser(string email, string password)
+        public static async Task<bool> LoginUser(string email, string password)
         {
-            // if user does not exist, register
-            auth.LoginUser(email, password);
-            return true;
+            try
+            {
+                // if user does not exist, register
+                return await auth.LoginUser(email, password);
+            }
+            catch(Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                string registerMessage = "There is no user record corresponding to this identifier";
+                if (ex.Message.Contains(registerMessage))
+                    return await RegisterUser(email, password);
+                return false;
+            }
         }
 
         public static bool IsAuthenticated()
         {
-            return true;
+            return auth.IsAuthenticated();
         }
 
         public static string GetCurrentUserId()
         {
-            return "";
+            return auth.GetCurrentUserId();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TravelRecordApp.Helpers;
 using Xamarin.Forms;
 
@@ -21,12 +22,12 @@ namespace TravelRecordApp.Droid.Dependencies
             throw new NotImplementedException();
         }
 
-        public bool LoginUser(string email, string password)
+        public async Task<bool> LoginUser(string email, string password)
         {
             throw new NotImplementedException();
         }
 
-        public bool RegisterUser(string email, string password)
+        public async Task<bool> RegisterUser(string email, string password)
         {
             throw new NotImplementedException();
         }
