@@ -20,7 +20,6 @@ namespace TravelRecordApp
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage());
-
             databaseLocation = databasePath;
         }
 
