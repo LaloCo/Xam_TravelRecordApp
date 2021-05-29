@@ -94,7 +94,8 @@ namespace TravelRecordApp.iOS.Dependencies
                         Latitude = (double)(dictionary.ValueForKey(new NSString("latitude")) as NSNumber),
                         Longitude = (double)(dictionary.ValueForKey(new NSString("longitude")) as NSNumber),
                         Distance = (int)(dictionary.ValueForKey(new NSString("distance")) as NSNumber),
-                        UserId = dictionary.ValueForKey(new NSString("userId")) as NSString
+                        UserId = dictionary.ValueForKey(new NSString("userId")) as NSString,
+                        Id = doc.Id
                     };
 
                     posts.Add(newPost);
