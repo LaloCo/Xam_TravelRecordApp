@@ -19,7 +19,7 @@ namespace TravelRecordApp.Droid.Dependencies
             throw new NotImplementedException();
         }
 
-        public Task<bool> Insert(Post post)
+        public bool Insert(Post post)
         {
             throw new NotImplementedException();
         }
