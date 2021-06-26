@@ -128,11 +128,21 @@ namespace TravelRecordApp.Droid.Dependencies
             hasReadPosts = true;
         }
 
-        public Task<List<Post>> Read()
+        public async Task<List<Post>> Read()
         {
+            hasReadPosts = false;
             var collection = Firebase.Firestore.FirebaseFirestore.Instance.Collection("posts");
             var query = collection.WhereEqualTo("userId", Firebase.Auth.FirebaseAuth.Instance.CurrentUser.Uid);
             query.Get().AddOnCompleteListener(this);
+
+            for(int i = 0; i < 50; i++)
+            {
+                await System.Threading.Tasks.Task.Delay(100);
+                if (hasReadPosts)
+                    break;
+            }
+
+            return posts;
         }
 
         public void SetJniIdentityHashCode(int value)
