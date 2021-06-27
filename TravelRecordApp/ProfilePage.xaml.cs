@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using SQLite;
 using TravelRecordApp.Model;
 using Xamarin.Forms;
+using TravelRecordApp.Helpers;
 
 namespace TravelRecordApp
 {
@@ -14,36 +15,38 @@ namespace TravelRecordApp
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            using(SQLiteConnection conn = new SQLiteConnection(App.databaseLocation))
+            //using(SQLiteConnection conn = new SQLiteConnection(App.databaseLocation))
+            //{
+            //    var postTable = conn.Table<Post>().ToList();
+
+            var postTable = await Firestore.Read();
+
+            var categories = (from p in postTable
+                              orderby p.CategoryId
+                              select p.CategoryName).Distinct().ToList();
+
+            var categories2 = postTable.OrderBy(p => p.CategoryId).Select(p => p.CategoryName).Distinct().ToList();
+
+            Dictionary<string, int> categoriesCount = new Dictionary<string, int>();
+            foreach (var category in categories)
             {
-                var postTable = conn.Table<Post>().ToList();
+                var count = (from p in postTable
+                             where p.CategoryName == category
+                             select p).ToList().Count;
 
-                var categories = (from p in postTable
-                                  orderby p.CategoryId
-                                  select p.CategoryName).Distinct().ToList();
+                var count2 = postTable.Where(p => p.CategoryName == category).ToList().Count;
 
-                var categories2 = postTable.OrderBy(p => p.CategoryId).Select(p => p.CategoryName).Distinct().ToList();
-
-                Dictionary<string, int> categoriesCount = new Dictionary<string, int>();
-                foreach (var category in categories)
-                {
-                    var count = (from p in postTable
-                                 where p.CategoryName == category
-                                 select p).ToList().Count;
-
-                    var count2 = postTable.Where(p => p.CategoryName == category).ToList().Count;
-
-                    categoriesCount.Add(category, count2);
-                }
-
-                categoriesListView.ItemsSource = categoriesCount;
-
-                postsCountLabel.Text = postTable.Count.ToString();
+                categoriesCount.Add(category, count2);
             }
+
+            categoriesListView.ItemsSource = categoriesCount;
+
+            postsCountLabel.Text = postTable.Count.ToString();
+            //}
         }
     }
 }

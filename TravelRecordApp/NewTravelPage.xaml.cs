@@ -6,6 +6,7 @@ using System.Linq;
 using TravelRecordApp.Logic;
 using TravelRecordApp.Model;
 using Xamarin.Forms;
+using TravelRecordApp.Helpers;
 
 namespace TravelRecordApp
 {
@@ -46,21 +47,30 @@ namespace TravelRecordApp
                     CategoryName = firstCategory.name
                 };
 
-                using (SQLiteConnection conn = new SQLiteConnection(App.databaseLocation))
-                {
-                    conn.CreateTable<Post>();
-                    int rowsAffected = conn.Insert(newPost);
+                //using (SQLiteConnection conn = new SQLiteConnection(App.databaseLocation))
+                //{
+                //    conn.CreateTable<Post>();
+                //    int rowsAffected = conn.Insert(newPost);
 
-                    if (rowsAffected > 0)
-                    {
-                        experienceEntry.Text = string.Empty;
-                        DisplayAlert("Success", "Post saved", "Ok");
-                    }
-                    else
-                        DisplayAlert("Failure", "Post was not saved, please try again", "Ok");
+                //    if (rowsAffected > 0)
+                //    {
+                //        experienceEntry.Text = string.Empty;
+                //        DisplayAlert("Success", "Post saved", "Ok");
+                //    }
+                //    else
+                //        DisplayAlert("Failure", "Post was not saved, please try again", "Ok");
+                //}
+
+                bool result = Firestore.Insert(newPost);
+                if (result)
+                {
+                    experienceEntry.Text = string.Empty;
+                    DisplayAlert("Success", "Post saved", "Ok");
                 }
+                else
+                    DisplayAlert("Failure", "Post was not saved, please try again", "Ok");
             }
-            catch(NullReferenceException nrex)
+            catch (NullReferenceException nrex)
             {
 
             }

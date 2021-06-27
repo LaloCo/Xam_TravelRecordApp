@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using SQLite;
+using TravelRecordApp.Helpers;
 using TravelRecordApp.Model;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -28,15 +29,18 @@ namespace TravelRecordApp
             GetPosts();
         }
 
-        private void GetPosts()
+        private async void GetPosts()
         {
-            using (SQLiteConnection conn = new SQLiteConnection(App.databaseLocation))
-            {
-                conn.CreateTable<Post>();
-                var posts = conn.Table<Post>().ToList();
+            //using (SQLiteConnection conn = new SQLiteConnection(App.databaseLocation))
+            //{
+            //    conn.CreateTable<Post>();
+            //    var posts = conn.Table<Post>().ToList();
 
-                DisplayOnMap(posts);
-            }
+            //    DisplayOnMap(posts);
+            //}
+
+            var posts = await Firestore.Read();
+            DisplayOnMap(posts);
         }
 
         private void DisplayOnMap(List<Post> posts)
