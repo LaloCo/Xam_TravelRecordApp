@@ -21,7 +21,6 @@
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Logic\" />
     <Folder Include="Assets\" />
     <Folder Include="Assets\Images\" />
   </ItemGroup>
