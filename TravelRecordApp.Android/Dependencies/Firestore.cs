@@ -12,7 +12,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(TravelRecordApp.Droid.Dependencies.Firestore))]
 namespace TravelRecordApp.Droid.Dependencies
 {
-    public class Firestore : IFirestore, IOnCompleteListener
+    public class Firestore : Java.Lang.Object, IFirestore, IOnCompleteListener
     {
         List<Post> posts;
         bool hasReadPosts = false;
@@ -21,16 +21,6 @@ namespace TravelRecordApp.Droid.Dependencies
         {
             posts = new List<Post>();
         }
-
-        public IntPtr Handle => throw new NotImplementedException();
-
-        public int JniIdentityHashCode => throw new NotImplementedException();
-
-        public JniObjectReference PeerReference => throw new NotImplementedException();
-
-        public JniPeerMembers JniPeerMembers => throw new NotImplementedException();
-
-        public JniManagedPeerStates JniManagedPeerState => throw new NotImplementedException();
 
         public async Task<bool> Delete(Post post)
         {
@@ -44,26 +34,6 @@ namespace TravelRecordApp.Droid.Dependencies
             {
                 return false;
             }
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Disposed()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DisposeUnlessReferenced()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Finalized()
-        {
-            throw new NotImplementedException();
         }
 
         public bool Insert(Post post)
@@ -130,39 +100,26 @@ namespace TravelRecordApp.Droid.Dependencies
 
         public async Task<List<Post>> Read()
         {
-            hasReadPosts = false;
-            var collection = Firebase.Firestore.FirebaseFirestore.Instance.Collection("posts");
-            var query = collection.WhereEqualTo("userId", Firebase.Auth.FirebaseAuth.Instance.CurrentUser.Uid);
-            query.Get().AddOnCompleteListener(this);
-
-            for(int i = 0; i < 50; i++)
+            try
             {
-                await System.Threading.Tasks.Task.Delay(100);
-                if (hasReadPosts)
-                    break;
+                hasReadPosts = false;
+                var collection = Firebase.Firestore.FirebaseFirestore.Instance.Collection("posts");
+                var query = collection.WhereEqualTo("userId", Firebase.Auth.FirebaseAuth.Instance.CurrentUser.Uid);
+                query.Get().AddOnCompleteListener(this);
+
+                for (int i = 0; i < 50; i++)
+                {
+                    await System.Threading.Tasks.Task.Delay(100);
+                    if (hasReadPosts)
+                        break;
+                }
+
+                return posts;
             }
-
-            return posts;
-        }
-
-        public void SetJniIdentityHashCode(int value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetJniManagedPeerState(JniManagedPeerStates value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetPeerReference(JniObjectReference reference)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UnregisterFromRuntime()
-        {
-            throw new NotImplementedException();
+            catch(Exception ex)
+            {
+                return posts;
+            }
         }
 
         public async Task<bool> Update(Post post)

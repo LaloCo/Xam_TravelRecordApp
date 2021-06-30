@@ -82,7 +82,8 @@ namespace TravelRecordApp
                 var location = await Geolocation.GetLocationAsync();
 
                 locator.PositionChanged += Locator_PositionChanged;
-                await locator.StartListeningAsync(new TimeSpan(0,1,0),100);
+                if (!locator.IsListening)
+                    await locator.StartListeningAsync(new TimeSpan(0, 1, 0), 100);
 
                 locationsMap.IsShowingUser = true;
 

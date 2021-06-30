@@ -26,6 +26,7 @@ namespace TravelRecordApp
             //    postListView.ItemsSource = posts;
             //}
 
+            postListView.ItemsSource = null;
             var posts = await Firestore.Read();
             postListView.ItemsSource = posts;
         }
