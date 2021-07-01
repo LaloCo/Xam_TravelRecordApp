@@ -23,9 +23,11 @@
     <Folder Include="Helpers\" />
     <Folder Include="Assets\" />
     <Folder Include="Assets\Images\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\Images\travel-bag.png" />
+    <None Remove="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Images\travel-bag.png" />
