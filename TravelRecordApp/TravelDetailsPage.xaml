@@ -2,18 +2,25 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:TravelRecordApp.ViewModel"
     x:Class="TravelRecordApp.TravelDetailsPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:TravelDetailslVM x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save"
-                     Clicked="Update_Clicked"/>
+                     Command="{Binding Source={StaticResource vm}, Path=UpdateCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout Margin="15">
             <Entry x:Name="experienceEntry"/>
             <Button Text="Delete"
-                    Clicked="Delete_Clicked"
+                    Command="{Binding Source={StaticResource vm}, Path=DeleteCommand}"
                     Style="{StaticResource normalButton}"/>
         </StackLayout>
     </ContentPage.Content>
