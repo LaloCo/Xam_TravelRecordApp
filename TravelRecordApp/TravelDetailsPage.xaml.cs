@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using SQLite;
 using TravelRecordApp.Helpers;
 using TravelRecordApp.Model;
+using TravelRecordApp.ViewModel;
 using Xamarin.Forms;
 
 namespace TravelRecordApp
 {
     public partial class TravelDetailsPage : ContentPage
     {
-        private Post _selectedPost;
         public TravelDetailsPage(Post selectedPost)
         {
             InitializeComponent();
 
-            _selectedPost = selectedPost;
+            (Resources["vm"] as TravelDetailslVM).SelectedPost = selectedPost;
             experienceEntry.Text = selectedPost.Experience;
         }
     }

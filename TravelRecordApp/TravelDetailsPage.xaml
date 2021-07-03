@@ -13,7 +13,8 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save"
-                     Command="{Binding Source={StaticResource vm}, Path=UpdateCommand}"/>
+                     Command="{Binding Source={StaticResource vm}, Path=UpdateCommand}"
+                     CommandParameter="{Binding Source={x:Reference experienceEntry}, Path=Text}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

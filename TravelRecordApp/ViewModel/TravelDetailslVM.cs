@@ -1,5 +1,6 @@
 ﻿using System;
 using TravelRecordApp.Helpers;
+using TravelRecordApp.Model;
 using Xamarin.Forms;
 
 namespace TravelRecordApp.ViewModel
@@ -8,25 +9,26 @@ namespace TravelRecordApp.ViewModel
     {
         public Command UpdateCommand { get; set; }
         public Command DeleteCommand { get; set; }
+        public Post SelectedPost { get; set; }
 
         public TravelDetailslVM()
         {
-            UpdateCommand = new Command(Update);
+            UpdateCommand = new Command<string>(Update);
             DeleteCommand = new Command(Delete);
         }
 
-        private async void Update()
+        private async void Update(string newExperience)
         {
-            _selectedPost.Experience = experienceEntry.Text;
+            SelectedPost.Experience = newExperience;
 
-            bool result = await Firestore.Update(_selectedPost);
+            bool result = await Firestore.Update(SelectedPost);
             if (result)
                 await App.Current.MainPage.Navigation.PopAsync();
         }
 
         private async void Delete()
         {
-            bool result = await Firestore.Delete(_selectedPost);
+            bool result = await Firestore.Delete(SelectedPost);
             if (result)
                 await App.Current.MainPage.Navigation.PopAsync();
         }
