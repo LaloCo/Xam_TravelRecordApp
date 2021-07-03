@@ -13,7 +13,7 @@ namespace TravelRecordApp.ViewModel
 
         public TravelDetailslVM()
         {
-            UpdateCommand = new Command<string>(Update);
+            UpdateCommand = new Command<string>(Update, CanUpdate);
             DeleteCommand = new Command(Delete);
         }
 
@@ -24,6 +24,13 @@ namespace TravelRecordApp.ViewModel
             bool result = await Firestore.Update(SelectedPost);
             if (result)
                 await App.Current.MainPage.Navigation.PopAsync();
+        }
+
+        private bool CanUpdate(string newExperience)
+        {
+            if (string.IsNullOrWhiteSpace(newExperience))
+                return false;
+            return true;
         }
 
         private async void Delete()
