@@ -6,14 +6,18 @@ using System.Linq;
 using TravelRecordApp.Model;
 using Xamarin.Forms;
 using TravelRecordApp.Helpers;
+using TravelRecordApp.ViewModel;
 
 namespace TravelRecordApp
 {
     public partial class NewTravelPage : ContentPage
     {
+        private NewTravelVM vm;
         public NewTravelPage()
         {
             InitializeComponent();
+
+            vm = Resources["vm"] as NewTravelVM;
         }
 
         protected override async void OnAppearing()
@@ -23,60 +27,7 @@ namespace TravelRecordApp
             var locator = CrossGeolocator.Current;
             var position = await locator.GetPositionAsync();
 
-            var venues = await Venue.GetVenues(position.Latitude, position.Longitude);
-            venueListView.ItemsSource = venues;
-        }
-
-        private void Save_Clicked(object sender, EventArgs e)
-        {
-            try
-            {
-                var selectedVenue = venueListView.SelectedItem as Venue;
-                var firstCategory = selectedVenue.categories.FirstOrDefault();
-
-                Post newPost = new Post()
-                {
-                    Experience = experienceEntry.Text,
-                    Address = selectedVenue.location.address,
-                    Distance = selectedVenue.location.distance,
-                    Latitude = selectedVenue.location.lat,
-                    Longitude = selectedVenue.location.lng,
-                    VenueName = selectedVenue.name,
-                    CategoryId = firstCategory.id,
-                    CategoryName = firstCategory.name
-                };
-
-                //using (SQLiteConnection conn = new SQLiteConnection(App.databaseLocation))
-                //{
-                //    conn.CreateTable<Post>();
-                //    int rowsAffected = conn.Insert(newPost);
-
-                //    if (rowsAffected > 0)
-                //    {
-                //        experienceEntry.Text = string.Empty;
-                //        DisplayAlert("Success", "Post saved", "Ok");
-                //    }
-                //    else
-                //        DisplayAlert("Failure", "Post was not saved, please try again", "Ok");
-                //}
-
-                bool result = Firestore.Insert(newPost);
-                if (result)
-                {
-                    experienceEntry.Text = string.Empty;
-                    DisplayAlert("Success", "Post saved", "Ok");
-                }
-                else
-                    DisplayAlert("Failure", "Post was not saved, please try again", "Ok");
-            }
-            catch (NullReferenceException nrex)
-            {
-
-            }
-            catch(Exception ex)
-            {
-
-            }
+            vm.GetVenues(position.Latitude, position.Longitude);
         }
     }
 }

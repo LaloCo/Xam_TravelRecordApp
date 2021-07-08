@@ -2,19 +2,32 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:TravelRecordApp.ViewModel"
     x:Class="TravelRecordApp.NewTravelPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:NewTravelVM x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save"
-                     Clicked="Save_Clicked"
+                     BindingContext="{StaticResource vm}"
+                     Command="{Binding SaveCommand}"
+                     CommandParameter="{Binding PostIsReady}"
                      IconImageSource="save.png"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout Margin="15,15,15,0">
+        <StackLayout Margin="15,15,15,0"
+                     BindingContext="{StaticResource vm}">
             <Entry x:Name="experienceEntry"
+                   Text="{Binding Experience}"
                    Placeholder="Write your experience"/>
             <ListView x:Name="venueListView"
+                      ItemsSource="{Binding Venues}"
+                      SelectedItem="{Binding SelectedVenue}"
                       HorizontalOptions="FillAndExpand">
                 <ListView.ItemTemplate>
                     <DataTemplate>
