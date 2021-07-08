@@ -9,6 +9,18 @@ namespace TravelRecordApp.ViewModel
     {
         public ObservableCollection<Post> Posts { get; set; }
 
+        private Post selectedPost;
+        public Post SelectedPost
+        {
+            get { return selectedPost; }
+            set
+            {
+                selectedPost = value;
+                if (selectedPost != null)
+                    App.Current.MainPage.Navigation.PushAsync(new TravelDetailsPage(selectedPost));
+            }
+        }
+
         public HistoryVM()
         {
             Posts = new ObservableCollection<Post>();

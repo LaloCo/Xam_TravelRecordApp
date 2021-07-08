@@ -12,8 +12,9 @@
     </ContentPage.Resources>
 
     <ListView x:Name="postListView"
-              ItemsSource="{Binding Source={StaticResource vm}, Path=Posts}"
-              ItemSelected="postListView_ItemSelected">
+              BindingContext="{StaticResource vm}"
+              ItemsSource="{Binding Posts}"
+              SelectedItem="{Binding SelectedPost}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextCell Text="{Binding Experience}"/>

@@ -24,15 +24,5 @@ namespace TravelRecordApp
 
             vm.GetPosts();
         }
-
-        void postListView_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
-        {
-            var selectedPost = postListView.SelectedItem as Post;
-
-            if(selectedPost != null)
-            {
-                Navigation.PushAsync(new TravelDetailsPage(selectedPost));
-            }
-        }
     }
 }

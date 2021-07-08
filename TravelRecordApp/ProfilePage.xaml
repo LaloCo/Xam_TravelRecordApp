@@ -15,7 +15,7 @@
         <StackLayout Margin="15,40,15,0"
                      BindingContext="{StaticResource vm}">
             <Label x:Name="postsCountLabel"
-                   Text="--"
+                   Text="{Binding PostCount}"
                    HorizontalTextAlignment="Center"
                    TextColor="{StaticResource blueColor}"
                    FontAttributes="Bold"/>

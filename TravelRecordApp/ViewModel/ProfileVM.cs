@@ -9,6 +9,8 @@ namespace TravelRecordApp.ViewModel
     {
         public ObservableCollection<CategoryCount> Categories { get; set; }
 
+        public int PostCount { get; set; }
+
         public ProfileVM()
         {
             Categories = new ObservableCollection<CategoryCount>();
