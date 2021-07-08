@@ -2,9 +2,18 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:TravelRecordApp.ViewModel"
     x:Class="TravelRecordApp.ProfilePage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:ProfileVM x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout Margin="15,40,15,0">
+        <StackLayout Margin="15,40,15,0"
+                     BindingContext="{StaticResource vm}">
             <Label x:Name="postsCountLabel"
                    Text="--"
                    HorizontalTextAlignment="Center"
@@ -13,11 +22,13 @@
             <Label Text="posts"
                    HorizontalOptions="Center"
                    TextColor="LightGray"/>
-            <ListView Margin="-15,0" x:Name="categoriesListView">
+            <ListView Margin="-15,0"
+                      x:Name="categoriesListView"
+                      ItemsSource="{Binding Categories}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Path=Key}"
-                                  Detail="{Binding Path=Value}"/>
+                        <TextCell Text="{Binding Path=Name}"
+                                  Detail="{Binding Path=Count}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
