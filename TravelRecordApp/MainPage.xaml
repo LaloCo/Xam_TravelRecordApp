@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TravelRecordApp.ViewModel"
              x:Class="TravelRecordApp.MainPage">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:MainVM x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <StackLayout Margin="15"
+                 BindingContext="{StaticResource vm}"
                  VerticalOptions="Center">
         <Image x:Name="iconImage"
                Aspect="AspectFit"
@@ -11,16 +19,19 @@
                HeightRequest="150"
                Margin="0,0,0,30"/>
         <Entry x:Name="emailEntry"
+               Text="{Binding Email}"
                Placeholder="Email"
                Keyboard="Email"
                TextColor="{StaticResource blueColor}"/>
         <Entry x:Name="passwordEntry"
+               Text="{Binding Password}"
                Placeholder="Password"
                IsPassword="True"
                TextColor="{StaticResource blueColor}"/>
         <Button x:Name="loginButton"
                 Text="Login"
-                Clicked="loginButton_Clicked"
+                Command="{Binding LoginCommand}"
+                CommandParameter="{Binding EntriesHaveText}"
                 Style="{StaticResource normalButton}"/>
     </StackLayout>
 
