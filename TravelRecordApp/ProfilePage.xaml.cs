@@ -19,13 +19,11 @@ namespace TravelRecordApp
             vm = Resources["vm"] as ProfileVM;
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
             vm.GetPosts();
-
-            //TODO: postsCountLabel.Text = postTable.Count.ToString();
         }
     }
 }

@@ -2,14 +2,26 @@
 using System.Linq;
 using System.Collections.ObjectModel;
 using TravelRecordApp.Helpers;
+using System.ComponentModel;
 
 namespace TravelRecordApp.ViewModel
 {
-    public class ProfileVM
+    public class ProfileVM : INotifyPropertyChanged
     {
         public ObservableCollection<CategoryCount> Categories { get; set; }
 
-        public int PostCount { get; set; }
+        private int postCount;
+        public int PostCount
+        {
+            get { return postCount; }
+            set
+            {
+                postCount = value;
+                OnPropertyChanged("PostCount");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public ProfileVM()
         {
@@ -39,6 +51,11 @@ namespace TravelRecordApp.ViewModel
                     Count = count
                 });
             }
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public class CategoryCount
