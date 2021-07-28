@@ -15,7 +15,7 @@ namespace TravelRecordApp
             MainPage = new NavigationPage(new MainPage());
         }
 
-        public App(string databasePath)
+        public App(string databasePath, bool test)
         {
             InitializeComponent();
 
